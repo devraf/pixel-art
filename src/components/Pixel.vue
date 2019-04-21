@@ -1,12 +1,22 @@
 <template>
-  <div v-bind:class="['pixel', color]"></div>
+  <div
+    v-on:click="interactive && changeColor(color)"
+    v-bind:class="['pixel', color, current ? 'current' : '']"
+  ></div>
 </template>
 
 <script>
 export default {
   name: "Pixel",
   props: {
-    color: String
+    color: String,
+    current: Boolean,
+    interactive: Boolean
+  },
+  methods: {
+    changeColor: function(color) {
+      this.$root.$emit("updatecolor", color);
+    }
   }
 };
 </script>
@@ -14,9 +24,12 @@ export default {
 <style scoped>
 .pixel {
   border: 1px solid lightgray;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   box-sizing: border-box;
+}
+.pixel.current {
+  border: 4px solid yellow;
 }
 .white {
   background-color: white;

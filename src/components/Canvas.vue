@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .canvas {
   display: flex;
   flex-wrap: wrap;

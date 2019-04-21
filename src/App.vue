@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ColorPicker />
+    <ColorPicker v-bind:color="color" v-bind:myNewProp="dataFromParent" />
     <Canvas />
   </div>
 </template>
@@ -14,8 +14,30 @@ export default {
   components: {
     Canvas,
     ColorPicker
+  },
+  data() {
+    return {
+      color: "my new color",
+      dataFromParent: "This is data passed from parent to component via a prop"
+    };
+  },
+  mounted() {
+    this.$root.$on("updatecolor", color => {
+      this.color = color;
+    });
   }
 };
 </script>
 
-<style></style>
+<style>
+* {
+  margin: 0;
+}
+#app {
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+</style>
