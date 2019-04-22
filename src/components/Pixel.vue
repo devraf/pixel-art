@@ -1,6 +1,6 @@
 <template>
   <div
-    v-on:click="interactive && changeColor(color)"
+    v-on:click="handleClick"
     v-bind:class="['pixel', color, current ? 'current' : '']"
   ></div>
 </template>
@@ -11,11 +11,18 @@ export default {
   props: {
     color: String,
     current: Boolean,
-    interactive: Boolean
+    isInColorPicker: Boolean,
+    isInCanvas: Boolean,
+    index: Number
   },
   methods: {
-    changeColor: function(color) {
-      this.$root.$emit("updatecolor", color);
+    handleClick: function() {
+      if (this.isInColorPicker) {
+        this.$root.$emit("updatecolor", this.color);
+      }
+      if (this.isInCanvas) {
+        this.$root.$emit("clickedpixel", this.index);
+      }
     }
   }
 };

@@ -1,18 +1,22 @@
 <template>
   <div>
     <Pixel
-      interactive
+      isInColorPicker
       color="white"
       :current="color == 'white' ? true : false"
     />
     <Pixel
-      interactive
+      isInColorPicker
       color="lightblue"
       :current="color == 'lightblue' ? true : false"
     />
-    <Pixel interactive color="blue" :current="color == 'blue' ? true : false" />
     <Pixel
-      interactive
+      isInColorPicker
+      color="blue"
+      :current="color == 'blue' ? true : false"
+    />
+    <Pixel
+      isInColorPicker
       color="darkblue"
       :current="color == 'darkblue' ? true : false"
     />
@@ -27,8 +31,7 @@ import Pixel from "@/components/Pixel.vue";
 export default {
   name: "ColorPicker",
   props: {
-    color: String,
-    myNewProp: String
+    color: String
   },
   components: {
     Pixel
